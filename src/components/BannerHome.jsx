@@ -29,8 +29,8 @@ const BannerHome = () => {
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [bannerData, imageUrl,currentImage]);
-  console.log(bannerData);
+  }, [bannerData, imageUrl, currentImage]);
+  // console.log(bannerData);
   return (
     <section className="w-full h-full">
       <div className="flex min-h-full max-h-[95vh] overflow-hidden">
@@ -51,13 +51,13 @@ const BannerHome = () => {
             <div className="absolute top-0 w-full h-full hidden items-center justify-between px-4 group-hover:lg:flex">
               <button
                 onClick={handlePrev}
-                className="bg-primary rounded-full p-1  z-10 text-2xl"
+                className="bg-primary rounded-full p-1  z-10 text-2xl hover:bg-gradient-to-r hover:from-red-800 hover:to-primary"
               >
                 <FaAngleLeft />
               </button>
               <button
                 onClick={handleNext}
-                className="bg-primary rounded-full p-1  z-10 text-2xl"
+                className="bg-primary rounded-full p-1  z-10 text-2xl hover:bg-gradient-to-r hover:from-red-800 hover:to-primary"
               >
                 <FaAngleRight />
               </button>

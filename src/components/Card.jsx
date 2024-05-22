@@ -6,7 +6,7 @@ import { MdOutlineStar } from "react-icons/md";
 const Card = ({ data, trending, index }) => {
   const imageUrl = useSelector((state) => state.movioData.imageUrl);
   return (
-    <div className="w-full max-w-[250px]  h-80 overflow-hidden rounded relative">
+    <div className="w-full min-w-[230px] max-w-[250px]  h-80 overflow-hidden rounded relative">
       <img src={imageUrl + data.poster_path} alt="" />
       <div className="absolute top-0">
         {trending && (
