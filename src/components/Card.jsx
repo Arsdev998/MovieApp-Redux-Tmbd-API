@@ -4,15 +4,21 @@ import moment from "moment";
 import { MdOutlineStar } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Card = ({ data, trending, index,media_type  }) => {
+const Card = ({ data, trending, index, media_type }) => {
   const imageUrl = useSelector((state) => state.movioData.imageUrl);
-  const mediaType = data.media_type ?? media_type 
+  const mediaType = data.media_type ?? media_type;
   return (
     <Link
       to={"/" + mediaType + "/" + data.id}
-      className="w-full min-w-[230px] max-w-[250px] z-10 h-80 overflow-hidden block rounded relative cursor-pointer hover:scale-105 transition-all"
+      className=" min-w-[180px] md:min-w-[230px] max-w-[190px] md:max-w-[235px] z-10 h-64 md:h-80 overflow-hidden block rounded relative cursor-pointer hover:scale-105 transition-all"
     >
-      <img src={imageUrl + data.poster_path} alt="" />
+     {
+      data?.poster_path ? (
+        <img src={imageUrl + data.poster_path} alt="" />
+      ):(
+        <img src={imageUrl + data.backdrop_path} alt="" />
+      )
+     }
       <div className="absolute top-0">
         {trending && (
           <div className="py-1 px-4 bg-gradient-to-r from-red-800 text-white font-bold rounded-r-full overflow-hidden to-primary">

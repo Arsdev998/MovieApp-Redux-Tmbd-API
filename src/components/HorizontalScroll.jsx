@@ -15,10 +15,10 @@ const HorizontalScroll = ({ data = [], heading, trending,media_type  }) => {
     <div>
       <div className="container mx-auto px-3 my-10">
         <h2 className="text-lg lg:text-3xl font-bold mb-5">{heading}</h2>
-        <div className=" relative">
+        <div className="relative">
           <div
             ref={containerRef}
-            className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] grid-flow-col gap-4  overflow-x-scroll  z-10 scroll-smooth transition-all scrollbar-none"
+            className="flex flex-row md:flex-wrap gap-4  overflow-x-scroll  z-10 scroll-smooth transition-all scrollbar-none"
           >
             {data.map((data, index) => {
               return (

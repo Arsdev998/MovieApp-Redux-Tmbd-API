@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import profile from "../assets/user.png";
 import { IoMdSearch } from "react-icons/io";
 import { navigation } from "../contants/Navigation.jsx";
 
 const Header = () => {
-  const [searchInput, setSearchInput] = useState("");
+  const location = useLocation();
+  const removeSpace = location?.search?.slice(3)?.split("20%")?.join("");
+  console.log("remove space", removeSpace);
+  const [searchInput, setSearchInput] = useState(removeSpace);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (searchInput) {
-      navigate(`/seach?q=${searchInput}`);
+      navigate(`/search?q=${searchInput}`);
     }
   }, [searchInput]);
 
   const handleSubmit = (e) => {
-    e.preventDeafault();
+    e.preventDefault();
   };
 
   return (
@@ -33,9 +36,7 @@ const Header = () => {
                 <NavLink
                   to={nav.href}
                   className={({ isActive }) =>
-                    `px-2 hover:text-neutral-100 ${
-                      isActive && "text-primary"
-                    }`
+                    `px-2 hover:text-neutral-100 ${isActive && "text-primary"}`
                   }
                 >
                   {nav.label}
@@ -49,11 +50,11 @@ const Header = () => {
             <input
               type="text"
               placeholder="Search here..."
-              className="bg-transparent px-4 py-1 outline-none border-none hidden lg:block"
+              className="bg-transparent px-4 py-1 outline-none border-none hidden md:block"
               onChange={(e) => setSearchInput(e.target.value)}
               value={searchInput}
             />
-            <button className="text-[30px] text-white">
+            <button className="text-[30px] text-white" type="submit">
               <IoMdSearch />
             </button>
           </form>

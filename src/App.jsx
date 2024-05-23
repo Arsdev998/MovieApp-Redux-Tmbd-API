@@ -6,7 +6,7 @@ import MobileNav from "./components/MobileNav";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setBannerData, setImageUrl } from "./store/movioSlice";
-import './App.css'
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function App() {
   return (
     <main className="pb-14  lg:p-0">
       <Header />
-      <div className="">
+      <div className="min-h-[90vh]">
         <Outlet />
       </div>
       <Footer />
