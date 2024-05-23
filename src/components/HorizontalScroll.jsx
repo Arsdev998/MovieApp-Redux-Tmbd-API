@@ -18,7 +18,7 @@ const HorizontalScroll = ({ data = [], heading, trending,media_type  }) => {
         <div className="relative">
           <div
             ref={containerRef}
-            className="flex flex-row md:flex-wrap gap-4  overflow-x-scroll  z-10 scroll-smooth transition-all scrollbar-none"
+            className="flex flex-row  gap-4  overflow-x-scroll  z-10 scroll-smooth transition-all scrollbar-none"
           >
             {data.map((data, index) => {
               return (

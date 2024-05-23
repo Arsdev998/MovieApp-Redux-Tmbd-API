@@ -3,7 +3,7 @@ import BannerHome from "../components/BannerHome";
 import { useSelector } from "react-redux";
 import HorizontalScroll from "../components/HorizontalScroll";
 import axios from "axios";
-import { useFetch } from "../hooks/useFetch";
+import  useFetch  from "../hooks/useFetch";
 
 const Home = () => {
   const trandingData = useSelector((state) => state.movioData.bannerData);

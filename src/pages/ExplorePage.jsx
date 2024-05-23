@@ -7,61 +7,50 @@ import NoResult from "../components/NoResult";
 
 const ExplorePage = () => {
   const params = useParams();
-  // console.log("params", params); // Debugging params untuk melihat apa yang diterima dari URL
-  const [pageNo, setPageNo] = useState(1); // State untuk nomor halaman
-  const [data, setData] = useState([]); // State untuk data yang diambil
-  const [totalPageNo, setTotalPageNo] = useState(0); // State untuk total halaman
-  const [isLoading, setIsLoading] = useState(false); // Ta
+  const [pageNo, setPageNo] = useState(1);
+  const [data, setData] = useState([]);
+  const [totalPageNo, setTotalPageNo] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Fungsi untuk mengambil data dari API
-  const fetchData = useCallback(async () => {
+  console.log("params", params.explore);
+
+  const fetchData = async () => {
     try {
       setIsLoading(true);
       const response = await axios.get(`/discover/${params.explore}`, {
         params: {
-          page: pageNo, // Mengirim nomor halaman sebagai parameter
+          page: pageNo,
         },
       });
-      // Menggabungkan data baru dengan data yang sudah ada
-      setData((prev) => {
-        return [...prev, ...response.data.results];
+      setData((preve) => {
+        return [...preve, ...response.data.results];
       });
-      // Mengatur total halaman dari respons API
       setTotalPageNo(response.data.total_pages);
-      setIsLoading(false);
+      setIsLoading(false)
     } catch (error) {
-      console.log(error); // Menangani kesalahan jika ada
+      console.log("error", error);
     }
-  }, [pageNo, params.explore]); // Menambahkan dependensi pageNo dan params.explore
+  };
 
-  // Fungsi untuk menangani scroll
-  const handleScroll = useCallback(() => {
-    // Memeriksa apakah pengguna telah mencapai bagian bawah halaman
-    if (
-      window.innerHeight + window.scrollY >= document.body.offsetHeight &&
-      pageNo < totalPageNo
-    ) {
-      setPageNo((prev) => prev + 1); // Meningkatkan nomor halaman jika belum mencapai total halaman
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      setPageNo((preve) => preve + 1);
     }
-  }, [pageNo, totalPageNo]); // Menambahkan dependensi pageNo dan totalPageNo
+  };
 
-  // Mengambil data saat pageNo atau params.explore berubah
   useEffect(() => {
     fetchData();
-  }, [fetchData]); // Dependensi pada fetchData
+  }, [pageNo]);
 
   useEffect(() => {
     setPageNo(1);
     setData([]);
     fetchData();
   }, [params.explore]);
-  // Menambahkan dan membersihkan event listener untuk scroll
+
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll); // Menambahkan event listener saat komponen mount
-    return () => {
-      window.removeEventListener("scroll", handleScroll); // Membersihkan event listener saat komponen unmount
-    };
-  }, [handleScroll]); // Dependensi pada handleScroll
+    window.addEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="py-16">
@@ -81,7 +70,7 @@ const ExplorePage = () => {
                 <Card
                   data={searchData}
                   key={index}
-                  media_type={searchData.media_type}
+                  media_type={params.explore}
                 />
               );
             })}

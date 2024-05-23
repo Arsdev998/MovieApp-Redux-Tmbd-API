@@ -16,10 +16,10 @@ const SearchPage = () => {
   const fetchData = useCallback(async () => {
     try {
       setIsLoading(true); // Set isLoading ke true sebelum mengambil data
-      const response = await axios.get(`/search/collection`, {
+      const response = await axios.get(`/search/multi`, {
         params: {
           query: location?.search?.slice(3),
-          page: 1, // Mengirim nomor halaman sebagai parameter
+          page: page, // Mengirim nomor halaman sebagai parameter
         },
       });
       // Menggabungkan data baru dengan data yang sudah ada
@@ -45,7 +45,7 @@ const SearchPage = () => {
       setData([]);
       fetchData();
     }
-  }, [query, fetchData]);
+  }, [location?.search]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll); // Menambahkan event listener saat komponen mount
@@ -61,7 +61,7 @@ const SearchPage = () => {
 
   return (
     <div className="py-16">
-      <div className="lg:hidden my-2 px-1  sticky top-20 z-40">
+      <div className="lg:hidden my-2 px-1  sticky top-16 z-40">
         <input
           type="text"
           placeholder="Search here..."

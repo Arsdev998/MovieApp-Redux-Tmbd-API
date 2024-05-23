@@ -36,7 +36,7 @@ const Card = ({ data, trending, index, media_type }) => {
           </p>
           <p className="flex items-center text-sm">
             <MdOutlineStar className="text-yellow-500 text-[18px] mt-[1px]" />
-            {Number(data.vote_average).toFixed(1)}
+            {Number(data.vote_average || "-").toFixed(1)}
           </p>
         </div>
       </div>
