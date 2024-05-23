@@ -6,6 +6,7 @@ import MobileNav from "./components/MobileNav";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setBannerData, setImageUrl } from "./store/movioSlice";
+import './App.css'
 
 function App() {
   const dispatch = useDispatch();

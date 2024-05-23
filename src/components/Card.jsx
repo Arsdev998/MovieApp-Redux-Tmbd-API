@@ -2,11 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import { MdOutlineStar } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-const Card = ({ data, trending, index }) => {
+const Card = ({ data, trending, index,media_type  }) => {
   const imageUrl = useSelector((state) => state.movioData.imageUrl);
+  const mediaType = data.media_type ?? media_type 
   return (
-    <div className="w-full min-w-[230px] max-w-[250px]  h-80 overflow-hidden rounded relative">
+    <Link
+      to={"/" + mediaType + "/" + data.id}
+      className="w-full min-w-[230px] max-w-[250px] z-10 h-80 overflow-hidden block rounded relative cursor-pointer hover:scale-105 transition-all"
+    >
       <img src={imageUrl + data.poster_path} alt="" />
       <div className="absolute top-0">
         {trending && (
@@ -29,7 +34,7 @@ const Card = ({ data, trending, index }) => {
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

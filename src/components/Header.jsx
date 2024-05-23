@@ -20,7 +20,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 w-full bg-neutral-600 h-16 bg-opacity-75 z-50">
+    <header className="fixed top-0 w-full bg-black h-16 bg-opacity-75 z-50">
       <div className="container mx-auto px-4 flex items-center h-full">
         <NavLink to={"/"}>
           <img src={logo} alt="" width={120} />
