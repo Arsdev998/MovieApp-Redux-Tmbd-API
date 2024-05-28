@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setBannerData, setImageUrl } from "./store/movioSlice";
 import "./App.css";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
     <main className="pb-14  lg:p-0">
       <Header />
       <div className="min-h-[90vh]">
+        <ScrollToTop/>
         <Outlet />
       </div>
       <Footer />

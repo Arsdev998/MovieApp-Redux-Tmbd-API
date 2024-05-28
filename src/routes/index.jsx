@@ -6,6 +6,7 @@ import DetailsPage from "../pages/DetailsPage";
 import SearchPage from "../pages/SearchPage";
 
 const router = createBrowserRouter([
+  
   {
     path: "/",
     element: <App /> ,

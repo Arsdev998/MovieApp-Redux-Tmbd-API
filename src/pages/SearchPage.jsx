@@ -52,7 +52,7 @@ const SearchPage = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll); // Membersihkan event listener saat komponen unmount
     };
-  }, [handleScroll]); // Dependensi pada handleScroll
+  }, [handleScroll]); 
 
   useEffect(() => {
     fetchData();
@@ -67,6 +67,8 @@ const SearchPage = () => {
           placeholder="Search here..."
           onChange={(e) => navigate(`/search?q=${e.target.value}`)}
           className="px-4 py-2 text-black text-lg w-full bg-white rounded-full outline-primary"
+          value={query?.split("20%")?.join(encodeURIComponent(" "))}
+
         />
       </div>
       <div className="container mx-auto">
